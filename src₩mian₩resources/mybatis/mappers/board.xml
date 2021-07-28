@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+
+	<!-- 조회수 올리기(글읽기) -->
+	<update id="updateHit" parameterType="int">
+		<![CDATA[
+			UPDATE board
+			set hit = hit + 1
+			where no = #{no}
+		]]>
+	</update>
+
+	<!--게시판 1 -->
+	<select id="selectBoard" parameterType="int" resultType = "com.javaex.vo.BoardVo">
+		<![CDATA[
+			select b.no,
+					b.title,			
+					b.content,
+					b.hit,
+					b.reg_date as regDate,
+					b.user_no as userNo,
+					u.name
+			from board b, users u
+			where b.user_no = u.no
+			and b.no = #{no}
+		]]>
+	</select>
+
+</mapper>
