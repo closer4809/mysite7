@@ -12,8 +12,8 @@
 		]]>
 	</update>
 
-	<!--게시판 1 -->
-	<select id="selectBoard" parameterType="int" resultType = "com.javaex.vo.BoardVo">
+	<!--게시판 1개 가져오기 -->
+	<select id="selectBoard" parameterType="int" resultType="com.javaex.vo.BoardVo">
 		<![CDATA[
 			select b.no,
 					b.title,			
@@ -27,5 +27,56 @@
 			and b.no = #{no}
 		]]>
 	</select>
+
+	<!--게시판 리스트 가져오기 -->
+	<select id="getList" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			select b.no,
+					b.title,			
+					b.content,
+					b.hit,
+					b.reg_date as regDate,
+					b.user_no as userNo,
+					u.name
+			from board b, users u
+			where b.user_no = u.no
+		]]>
+	</select>
+
+	<delete id="getDelete" parameterType="int">
+		<![CDATA[
+			DELETE FROM board 
+        	WHERE no = #{no}
+		]]>
+	</delete>
+
+	<insert id="getWrite" parameterType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			INSERT INTO board      
+     	  	VALUES (SEQ_NO.nextval, #{title}, #{content}, 0, sysdate, #{userNo})
+        ]]>
+	</insert>
+
+	<update id="getmodify" parameterType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			update board      
+     	  	set 
+     	  			title = #{title},
+     	  			content = #{content}
+     	  	where no = #{no}			
+        ]]>
+	</update>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </mapper>
