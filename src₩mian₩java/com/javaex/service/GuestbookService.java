@@ -46,15 +46,33 @@ public class GuestbookService {
 		return guestbookVo;
 	}
 	
-	public GuestbookVo getDelete(GuestbookVo guestbookVo) {
-		System.out.println("[BoardService.delete()]");
+	public int getDelete(GuestbookVo guestbookVo) {
+		System.out.println("[GuestbookService.delete()]");
 		System.out.println(guestbookVo);
 		
 		
-		guestbookDao.getdelete(guestbookVo);
+		int count = guestbookDao.getdelete(guestbookVo);
 		
-		return guestbookVo;
+		return count;
 	}
 	
+	//방명록 글 저장_게시글 가져오기
+	public GuestbookVo writeResultVo(GuestbookVo guestbookVo) {
+		System.out.println("[GuestbookService.writeResultVo()]"); 
+		
+		//글 저장
+		System.out.println(guestbookVo); // no x 
+		
+		
+		int count = guestbookDao.insertGuestbookKey(guestbookVo);
+		
+		System.out.println(guestbookVo); // no o
+		
+		int no = guestbookVo.getNo(); //방금 저장한 글 번호
+		//글가져오기(방금 등록한 번호)
+		GuestbookVo resultVo = guestbookDao.selectGuestbook(no);
+		System.out.println(resultVo); 
+		return resultVo;
+	}
 	
 }

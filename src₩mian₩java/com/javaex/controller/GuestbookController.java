@@ -64,7 +64,7 @@ public class GuestbookController {
 	
 	@RequestMapping(value = "/gbc/delete", method = {RequestMethod.POST, RequestMethod.GET})
 	public String modify(@ModelAttribute GuestbookVo guestbookVo) {
-		System.out.println("[BoardController.delete()]");
+		System.out.println("[GuestbookController.delete()]");
 		System.out.println(guestbookVo);
 		
 		guestbookService.getDelete(guestbookVo);
@@ -73,6 +73,19 @@ public class GuestbookController {
 		
 		return "redirect:/gbc/addlist";
 	}
+	
+	//ajax방명록 메인페이지 
+	@RequestMapping(value = "/gbc/ajaxMain", method = {RequestMethod.POST, RequestMethod.GET})
+	public String ajaxMain() {
+		System.out.println("[GuestbookController.ajaxMain()]");		
+		
+		return"guestbook/ajaxList";
+	}
+	
+	
+	
+	
+	
 	
 	
 	

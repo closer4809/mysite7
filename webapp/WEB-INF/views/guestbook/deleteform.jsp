@@ -55,10 +55,6 @@
 								<td>
 									<input type="password" name="password">
 								</td>
-								<td>
-									<input type="text" name="no" value="${param.no}">
-								</td>
-								
 								<td class="text-left">
 									<button type="submit">삭제</button>
 								</td>
@@ -67,6 +63,7 @@
 								</td>
 							</tr>
 						</table>
+						<input type="hidden" name="no" value="${param.no}">
 						<input type='hidden' name="" value="">
 						<input type='hidden' name="" value="">
 					</form>

@@ -46,6 +46,23 @@ public class UserController {
 
 	}
 
+	//로그아웃
+	@RequestMapping(value="/user/logout", method = {RequestMethod.GET, RequestMethod.POST})
+	public String logout(HttpSession session) {
+		System.out.println("[로그아웃]");
+		
+		session.removeAttribute("authUser");
+		
+		
+		//세션에 할당되는 메모리를 삭제
+		session.invalidate();
+
+		
+		return "redirect:/main";
+				
+	}
+	
+	
 	// 조인폼
 	@RequestMapping(value = "/user/joinform", method = { RequestMethod.GET, RequestMethod.POST })
 	public String joinForm() {

@@ -14,7 +14,7 @@
 			<ul>
 				<li>${sessionScope.authUser.name }님안녕하세요.</li>
 				<li><a href="${pageContext.request.contextPath }/user/logout" class="btn_s">로그아웃</a></li>
-				<li><a href="${pageContext.request.contextPath }/user/modifyform" class="btn_s">회원정보수정</a></li>
+				<li><a href="${pageContext.request.contextPath }/user/modifyForm" class="btn_s">회원정보수정</a></li>
 			</ul>
 		</c:when>
 
@@ -32,9 +32,9 @@
 <div id="nav">
 	<ul class="clearfix">
 		<li><a href="">입사지원서</a></li>
-		<li><a href="/mysite/board">게시판</a></li>
+		<li><a href="${pageContext.request.contextPath }/board/list">게시판</a></li>
 		<li><a href="">갤러리</a></li>
-		<li><a href="/mysite/guest">방명록</a></li>
+		<li><a href="${pageContext.request.contextPath }/gbc/addlist">방명록</a></li>
 	</ul>
 </div>
 <!-- //nav -->

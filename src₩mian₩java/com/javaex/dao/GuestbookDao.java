@@ -46,14 +46,36 @@ public class GuestbookDao {
 		return guestbookVo;
 	}
 
-	public GuestbookVo getdelete(GuestbookVo guestbookVo) {
+	public int getdelete(GuestbookVo guestbookVo) {
 		System.out.println("[BoardDao.delete()]");
 		System.out.println(guestbookVo);
 		
 		
-		sqlSession.delete("getDeletebook", guestbookVo);
+		int count = sqlSession.delete("getDeletebook", guestbookVo);
 		
-		return guestbookVo;
+		return count;
 	}
+	
+	//방명록 글 저장 - ajax
+	public int insertGuestbookKey(GuestbookVo guestbookVo) {
+		System.out.println("[GuestbookDao.insertGuestbookKey()]");
+
+		
+		
+		return sqlSession.insert("guestbook.insertGuestbookKey", guestbookVo);
+		
+	}
+	
+	//방명록 글 가져오기 - ajax
+	public GuestbookVo selectGuestbook(int no) {
+		System.out.println("[GuestbookDao.selectGuestbook()]");
+		
+		
+		System.out.println(no);
+		return sqlSession.selectOne("guestbook.selectGuestbook", no);
+
+		
+	}
+	
 	
 }
