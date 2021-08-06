@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,31 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	
+	//게시판 페이징 연습용 리스트
+	@RequestMapping(value = "/board/list2", method = {RequestMethod.POST, RequestMethod.GET})
+	public String list2(Model model, 	//crtpage 벨류가 있든 없든 디폴트값 1페이지 표츌
+						@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage,
+						@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) {
+		System.out.println("[BoardController.list2]"); 
+		
+		
+		
+		
+		
+		Map<String, Object> listMap = boardService.getList2(crtPage, keyword);
+		
+		
+		model.addAttribute("listMap" ,listMap);
+		
+		return "board/list2";
+	}
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/board/read", method = {RequestMethod.POST, RequestMethod.GET})
 	public String read(Model model, @RequestParam("no") int no) {
@@ -65,6 +91,7 @@ public class BoardController {
 		boardService.getWrite(boardVo);
 		
 		
+		
 		return "redirect:/board/list";	
 		
 	}
@@ -72,6 +99,10 @@ public class BoardController {
 	@RequestMapping(value = "/board/writeform", method = {RequestMethod.POST, RequestMethod.GET})
 	public String writeForn(){
 		System.out.println("[BoardController.WriteForm()]");
+		
+	
+		
+		
 		
 		return "board/writeForm";
 	}

@@ -373,6 +373,17 @@ function render(guestbookVo, type) {
    
 }
 
+	$("#btnhide").on("click", function(){
+		console.log("숨기기버튼 클릭");
+		
+		$("#btnSubmit").hide();
+	});
+	
+	$("#")
+
+
+
+
 
 </script>
 
