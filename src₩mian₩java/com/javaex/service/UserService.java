@@ -42,4 +42,21 @@ public class UserService {
 		return userDao.modifyUser(userVo);
 	}
 
+	//회원가입폼 id사용유무체크
+	public boolean getUser2(String id) {
+		System.out.println("[UserService.getUser2()]");
+
+		
+		UserVo userVo =  userDao.selectUser2(id);
+		
+		if(userVo == null) { // db에 없는경우 사용가능 id
+			return true;
+		}else {				// db에 있는경우 사용불가능 id
+			return false; 
+		}
+		
+
+
+		
+	}
 }

@@ -173,17 +173,8 @@
       
       //ajax 요청하기
      fetchList();
-      
-      
-      
-      
-      
-      
-      
-      
    });
    
-
 //로딩이 끝난후에
 //등록 버튼 클릭할때
 $("#btnSubmit").on("click", function() {

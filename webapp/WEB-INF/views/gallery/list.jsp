@@ -57,74 +57,28 @@
 
 						<ul id="viewArea">
 
+				
+				
+						
+						
+						
+						<c:forEach items="${galleryList }" var="getImgList">	
 							<!-- 이미지반복영역 -->
 							<li>
 								<div class="view">
-									<img class="imgItem" src="">
+									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${getImgList.saveName}">
 									<div class="imgWriter">
 										작성자: <strong>유재석</strong>
 									</div>
 								</div>
 							</li>
 							<!-- 이미지반복영역 -->
-							
-							<!-- 이미지반복영역 -->
-							<li>
-								<div class="view">
-									<img class="imgItem" src="">
-									<div class="imgWriter">
-										작성자: <strong>유재석</strong>
-									</div>
-								</div>
-							</li>
-							<!-- 이미지반복영역 -->
-							
-							<!-- 이미지반복영역 -->
-							<li>
-								<div class="view">
-									<img class="imgItem" src="">
-									<div class="imgWriter">
-										작성자: <strong>유재석</strong>
-									</div>
-								</div>
-							</li>
-							<!-- 이미지반복영역 -->
-							
-							
-							<!-- 이미지반복영역 -->
-							<li>
-								<div class="view">
-									<img class="imgItem" src="">
-									<div class="imgWriter">
-										작성자: <strong>유재석</strong>
-									</div>
-								</div>
-							</li>
-							<!-- 이미지반복영역 -->
-							
-							<!-- 이미지반복영역 -->
-							<li>
-								<div class="view">
-									<img class="imgItem" src="">
-									<div class="imgWriter">
-										작성자: <strong>유재석</strong>
-									</div>
-								</div>
-							</li>
-							<!-- 이미지반복영역 -->
-							
-							<!-- 이미지반복영역 -->
-							<li>
-								<div class="view">
-									<img class="imgItem" src="">
-									<div class="imgWriter">
-										작성자: <strong>유재석</strong>
-									</div>
-								</div>
-							</li>
-							<!-- 이미지반복영역 -->
-
-
+						</c:forEach>
+						
+						
+						
+						
+						
 						</ul>
 					</div>
 					<!-- //list -->
@@ -163,13 +117,13 @@
 					<h4 class="modal-title">이미지등록</h4>
 				</div>
 
-				<form method="" action="">
+				<form method="get" action="${pageContext.request.contextPath }/gallery/write">
 					<div class="modal-body">
 						<div class="form-group">
-							<label class="form-text">글작성</label> <input id="addModalContent" type="text" name="" value="">
+							<label class="form-text">글작성</label> <input id="addModalContent" type="text" name="content" value="">
 						</div>
 						<div class="form-group">
-							<label class="form-text">이미지선택</label> <input id="file" type="file" name="" value="">
+							<label class="form-text">이미지선택</label> <input id="file" type="file" name="orgName" value="">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -227,6 +181,29 @@
 
 
 </body>
+
+<script type="text/javascript">
+//화면 로딩되기 직전!
+$(document).ready(function() {
+   console.log("화면 로딩 직전");
+   
+   //ajax 요청하기
+  
+});
+
+
+
+$("#btnImgUpload").on("click",function(){
+ 	
+   	console.log("이미지올리기 클릭");
+
+
+  	//등록 모달창 보이기
+	$("#addModal").modal();
+  });
+
+</script>
+
 
 </html>
 

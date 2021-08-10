@@ -29,7 +29,9 @@
 
 				<div id="user">
 					<div id="joinForm">
-						<form action="${pageContext.request.contextPath }/user/join" method="get">
+						<form action="${pageContext.request.contextPath }/user/join"
+							method="get"
+						>
 
 							<!-- 아이디 -->
 							<div class="form-group">
@@ -37,7 +39,8 @@
 								<input type="text" id="input-uid" name="id" value=""
 									placeholder="아이디를 입력하세요"
 								>
-								<button type="button" id="">중복체크</button>
+								<button type="button" id="btnIdCheck">중복체크</button>
+								<p id="idcheckMsg"></p>
 							</div>
 
 							<!-- 비밀번호 -->
@@ -95,5 +98,116 @@
 	<!-- //wrap -->
 
 </body>
+
+<script type="text/javascript">
+	//데이터를 json형식으로 보내기
+	//form사용 x --> form 처럼 사용하기
+	//parameter x --> json으로 데이터를 보낸다
+	
+	$("#btn-submit").on("click", function(){
+		event.preventDefault();
+		console.log("json방식으로 데이터를 보낸다.")
+		
+		//데이터 모으기
+		var userVo = {
+			id : $("#input-uid").val();
+			password : $("#input-pass").val();
+			name : $("#input-name").val();
+			gender : $("[name=gender]").val();
+		}:
+			console.log(userVo);
+		
+		$.ajax({
+    		//url : "${pageContext.request.contextPath }/api/guestbook/write?name="+userName+"&password="+password+"&content="+content,      
+   			url : "${pageContext.request.contextPath }/user/join2",
+	 		type : "get",
+    		contentType : "application/json",
+     
+			data: JSON.stringify(userVo),
+
+
+    		dataType : "json",
+    		success : function(guestbookVo){
+       		/*성공시 처리해야될 코드 작성*/
+     
+    		},
+    		error : function(XHR, status, error) {
+       		console.error(status + " : " + error);
+			}
+ 
+	 });
+	});
+	
+	/*
+	//form 전송버튼을 클릭했을때
+	$("#joinForm").on("submit", function(){
+		
+		console.log("form 전송버튼 클릭했을때");
+		
+		//패스워드8글자 이상 체크
+		var password = $("#input-pass").val();
+		if(password.length < 8){
+			alert("패스워드를 8슬자 이상 입력해주세요");
+			return false;
+		}
+		
+		//이름체크 
+		var name = $("#input-name").val();
+		if(name.lenth<1){
+			alert("이름을 입력해 주세요")
+			return false;
+		}
+		
+		//약관동의
+		var agree = $("#chk-agree").is();
+		if(agree = false){
+			alert("약관에 동의해 주세요");
+			return false;
+		}
+		
+		return true;
+	});
+	
+*/
+	$("#btnIdCheck").on("click", function(){
+		console.log("아이디버튼 중복체크");
+		
+		var id = $("#input-uid").val();
+		console.log(id);
+		
+		 //데이터 ajax방식으로 서버에 전송   
+		   $.ajax({
+		            
+		      url : "${pageContext.request.contextPath }/user/idCheck",
+		  		 type : "get",
+//		       contentType : "application/json",
+		       data : {id: id},
+				
+				
+				
+		      dataType : "json",
+		      success : function(state){
+		         /*성공시 처리해야될 코드 작성*/
+		         console.log(state);
+		         if(state == 'true'){
+		      		 $("#idcheckMsg").html("사용가")
+		         }else if(state == 'false'){
+		        	 $("#idcheckMsg").html("사용중인 id") 
+		         }else{
+		        	 $("#idcheckMsg").html("관리자문의")
+		         }
+		         
+		         
+		         },
+		      error : function(XHR, status, error) {
+		         console.error(status + " : " + error);
+		      }
+		   });
+	   });
+	
+	
+
+</script>
+
 
 </html>

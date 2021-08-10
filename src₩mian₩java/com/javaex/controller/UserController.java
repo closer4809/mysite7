@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -110,4 +112,31 @@ public class UserController {
 		return "redirect:/main";
 	}
 
+	
+	//아이디체크 아작스
+	//ㄹㅣ스폰스바디?
+	@ResponseBody
+	@RequestMapping(value = "user/idCheck", method = { RequestMethod.GET, RequestMethod.POST })	
+	public boolean idCheck(@RequestParam("id") String id) {
+	System.out.println("[UserController.idCheck()]");
+	
+	System.out.println(id);
+	
+	boolean state =  userService.getUser2(id);
+	
+		return state;
+	}
+	
+	/*json방식으로 데이터 받기*/
+	@ResponseBody
+	@RequestMapping(value = "user/join2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String join2(@ModelAttribute UserVo userVo) {
+		System.out.println("[UserController.join2]");
+		System.out.println(userVo);
+		
+		return"";
+	}
+	
+	
+	
 }

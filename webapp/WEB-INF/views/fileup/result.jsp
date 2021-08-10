@@ -43,7 +43,7 @@
 			
 			<div id="file">
 				
-					<div>
+					<div>						
 						<img id="resultImg" src="${pageContext.request.contextPath }/upload/${saveName} ">
 					</div>
 					<p>

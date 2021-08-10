@@ -45,7 +45,7 @@
 				<!-- //content-head -->
 
 				<div id="file">
-					<form method="post" action="${pageContext.request.contextPath }/fileup/upload" enctype="multipart/form-data">
+					<form method="get" action="${pageContext.request.contextPath }/fileup/upload" enctype="multipart/form-data">
 						
 						<!-- <input type = "text" name ="" value=""> -->
 						<table>

@@ -16,13 +16,21 @@ public class GalleryDao {
 	
 	
 	public List<GalleryVo> getImgList() {
+		System.out.println("[GalleryDao.getImgList]");
+		List<GalleryVo> galleryVo = sqlSession.selectList("gallery.getImgList");
+		System.out.println(galleryVo);
 		
-		List<GalleryVo> galleryVo = sqlSession.
-		
-		return;
+		return galleryVo;
 	}
 	
 	
+	public GalleryVo imgWrite() {
+		
+		sqlSession.insert("gallery.imgWrite");
+		
+		
+		return null;
+	}	
 	
 	
 }
